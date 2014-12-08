@@ -6,24 +6,32 @@ import de.uni_potsdam.hpi.bpt.bp2014.database.DbActivityInstance;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.LinkedList;
 
 /**
  * Created by jaspar.mang on 24.11.14.
  */
 public class debugClass {
     public static String selectScenario(){
+
+        System.out.print("Select Scenario: ");
+        String scID = readLine();
+        System.out.println("Scenario " + scID + " selected");
+        return scID;
+    }
+
+    public static String readLine(){
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(isr);
-        System.out.print("Select Scenario: ");
-        String scID = null;
+        String back = null;
         try {
-            scID = br.readLine();
+            back = br.readLine();
         } catch (IOException e) {
             System.out.print("ERROR: "+e);
             e.printStackTrace();
         }
-        System.out.println("Scenario " + scID + " selected");
-        return scID;
+
+        return back;
     }
 
     public static void main(String args[]){
@@ -31,5 +39,15 @@ public class debugClass {
         ScenarioInstance scenarioInstance = new ScenarioInstance(new Integer(scenarioID));
         DbActivityInstance dbActivityInstance = new DbActivityInstance();
         dbActivityInstance.setState(1 , "init");
+        while(true){
+            RunningService runningService = new RunningService(scenarioInstance);
+            LinkedList<Integer> activitiesIDs= runningService.getEnabledActivitiesIDs();
+            System.out.println("enabled Aktivität ID");
+            for(int activityID: activitiesIDs){
+                System.out.println(activityID);
+            }
+            System.out.println("Select Activity");
+            runningService.startActivity(new Integer(readLine()));
+        }
     }
 }

@@ -1,5 +1,6 @@
 package de.uni_potsdam.hpi.bpt.bp2014.jengine;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import de.uni_potsdam.hpi.bpt.bp2014.database.DbFragment;
 import de.uni_potsdam.hpi.bpt.bp2014.database.DbScenarioInstance;
 
@@ -13,6 +14,7 @@ public class ScenarioInstance {
     public LinkedList<ControlNodeInstance> enabledControlNodeInstances = new LinkedList<ControlNodeInstance>();
     public LinkedList<ControlNodeInstance> controlFlowEnabledControlNodeInstances = new LinkedList<ControlNodeInstance>();
     public LinkedList<ControlNodeInstance> dataEnabledControlNodeInstances = new LinkedList<ControlNodeInstance>();
+    public LinkedList<ControlNodeInstance> runningControlNodeInstances = new LinkedList<ControlNodeInstance>();
     private LinkedList<FragmentInstance> fragmentInstances = new LinkedList<FragmentInstance>();
     private LinkedList<DataObject> dataObjects = new LinkedList<DataObject>();
     private int scenarioInstance_id;
@@ -27,7 +29,7 @@ public class ScenarioInstance {
             scenarioInstance_id = dbScenarioInstance.getScenarioInstanceID(scenario_id);
             System.out.println("exist");
             this.initializeFragments();
-        }else {
+        } else {
             System.out.println("exist not");
             dbScenarioInstance.createNewScenarioInstance(scenario_id);
             scenarioInstance_id = dbScenarioInstance.getScenarioInstanceID(scenario_id);

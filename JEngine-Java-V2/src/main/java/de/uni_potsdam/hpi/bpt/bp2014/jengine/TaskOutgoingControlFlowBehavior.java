@@ -5,7 +5,8 @@ package de.uni_potsdam.hpi.bpt.bp2014.jengine;
  */
 public class TaskOutgoingControlFlowBehavior extends OutgoingBehavior{
 
-    public TaskOutgoingControlFlowBehavior(){
-        super();
+    public TaskOutgoingControlFlowBehavior(int activity_id, ScenarioInstance scenarioInstance){
+        this.controlNode_id = activity_id;
+        this.scenarioInstance = scenarioInstance;
     }
 }

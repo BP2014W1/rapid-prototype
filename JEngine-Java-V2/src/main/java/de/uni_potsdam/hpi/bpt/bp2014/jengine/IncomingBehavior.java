@@ -8,5 +8,8 @@ import de.uni_potsdam.hpi.bpt.bp2014.database.DbControlFlow;
 public class IncomingBehavior {
     protected DbControlFlow dbControlFlow = new DbControlFlow();
     protected ScenarioInstance scenarioInstance;
-    protected int controlNodeInstance_id;
+    protected ControlNodeInstance controlNodeInstance;
+    protected StateMachine stateMachine;
+
+
 }

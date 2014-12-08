@@ -24,9 +24,7 @@ public class FragmentInstance {
         this.scenarioInstance_id = scenarioInstance_id;
         if (dbFragmentInstance.existFragment(fragment_id)){
             fragmentInstance_id = dbFragmentInstance.getFragmentInstanceID(fragment_id);
-            System.out.println("exist");
         }else {
-            System.out.println("exist not");
             dbFragmentInstance.createNewFragmentInstance(fragment_id, scenarioInstance_id);
             fragmentInstance_id = dbFragmentInstance.getFragmentInstanceID(fragment_id);
             this.initializeNodeInstanceForFragment();
@@ -38,13 +36,8 @@ public class FragmentInstance {
         String controlNodeType = dbControlNode.getType(controlNode);
         if (controlNodeType.equals("Activity")){
             ActivityInstance activityInstance = new ActivityInstance(controlNode, fragmentInstance_id, scenarioInstance);
-            scenarioInstance.controlNodeInstances.add(activityInstance);
-            scenarioInstance.controlFlowEnabledControlNodeInstances.add(activityInstance);
-            //TODO: Data here
-            scenarioInstance.dataEnabledControlNodeInstances.add(activityInstance);
-            scenarioInstance.dataEnabledControlNodeInstances.add(activityInstance);
+            ((TaskIncomingControlFlowBehavior)activityInstance.incomingBehavior).enableControlFlow();
         }
-
         //TODO: insert Gateways HERE!
     }
 

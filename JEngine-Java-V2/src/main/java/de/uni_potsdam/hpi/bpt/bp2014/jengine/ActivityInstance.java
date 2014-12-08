@@ -10,6 +10,7 @@ public class ActivityInstance extends ControlNodeInstance {
     int fragmentInstance_id;
     int controlNodeInstance_id;
     int controlNode_id;
+    TaskExecutionBehavior taskExecutionBehavior;
     ScenarioInstance scenarioInstance;
     DbControlNodeInstance dbControlNodeInstance = new DbControlNodeInstance();
     DbActivityInstance dbActivityInstance = new DbActivityInstance();
@@ -24,7 +25,15 @@ public class ActivityInstance extends ControlNodeInstance {
             dbControlNodeInstance.createNewControlNodeInstance(controlNode_id, "Activity", fragmentInstance_id);
             controlNodeInstance_id = dbControlNodeInstance.getControlNodeInstanceID(controlNode_id);
             dbActivityInstance.createNewActivityInstance(controlNodeInstance_id, "HumanTask", "init");
-            stateMachine = new ActivityStateMachine(controlNodeInstance_id, scenarioInstance);
+            this.stateMachine = new ActivityStateMachine(controlNodeInstance_id, scenarioInstance, this);
+            ((ActivityStateMachine)stateMachine).enableControlFlow();
+            this.taskExecutionBehavior = new HumanTaskExecutionBehavior(controlNodeInstance_id, scenarioInstance);
+            this.incomingBehavior = new TaskIncomingControlFlowBehavior(this, scenarioInstance, stateMachine);
+            this.outgoingBehavior = new TaskOutgoingControlFlowBehavior(controlNode_id, scenarioInstance);
         }
+    }
+
+    public Boolean begin(){
+        return ((ActivityStateMachine) stateMachine).begin();
     }
 }

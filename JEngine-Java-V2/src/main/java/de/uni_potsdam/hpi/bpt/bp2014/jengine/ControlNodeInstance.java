@@ -4,7 +4,7 @@ package de.uni_potsdam.hpi.bpt.bp2014.jengine;
  * Created by jaspar.mang on 24.11.14.
  */
 public class ControlNodeInstance {
-    protected OutgoingBehavior outgoingBehavior;
-    protected IncomingBehavior incomingBehavior;
+    public OutgoingBehavior outgoingBehavior;
+    public IncomingBehavior incomingBehavior;
     protected StateMachine stateMachine;
 }

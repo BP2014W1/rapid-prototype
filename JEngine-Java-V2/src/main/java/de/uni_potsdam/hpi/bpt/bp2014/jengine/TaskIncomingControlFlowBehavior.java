@@ -5,7 +5,16 @@ package de.uni_potsdam.hpi.bpt.bp2014.jengine;
  */
 public class TaskIncomingControlFlowBehavior extends IncomingBehavior{
 
-    public TaskIncomingControlFlowBehavior(){
-        super();
+    public TaskIncomingControlFlowBehavior(ControlNodeInstance controlNodeInstance, ScenarioInstance scenarioInstance, StateMachine stateMachine){
+        this.controlNodeInstance = controlNodeInstance;
+        this.scenarioInstance = scenarioInstance;
+        this.stateMachine = stateMachine;
+
+        //TODO: Data Objects HERE
+        ((ActivityStateMachine)stateMachine).enableData();
+    }
+
+    public void enableControlFlow(){
+        ((ActivityStateMachine)stateMachine).enableControlFlow();
     }
 }

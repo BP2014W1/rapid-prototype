@@ -8,5 +8,5 @@ import de.uni_potsdam.hpi.bpt.bp2014.database.DbControlFlow;
 public class OutgoingBehavior {
     protected DbControlFlow dbControlFlow = new DbControlFlow();
     protected ScenarioInstance scenarioInstance;
-    protected int controlNodeInstance_id;
+    protected int controlNode_id;
 }
