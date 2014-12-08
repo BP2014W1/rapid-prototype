@@ -16,8 +16,8 @@ import java.util.Iterator;
 import java.util.List;
 
 public class FileUpload extends HttpServlet {
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         doPost(request, response);
     }
 
@@ -49,7 +49,9 @@ public class FileUpload extends HttpServlet {
             while (it.hasNext()) {
                 out.println("<tr>");
                 FileItem fileItem = it.next();
-                pcm.add(fileItem);
+                //pcm.add(fileItem);
+                pcm.add(fileItem.getString("StoreLocation"));
+
                 boolean isFormField = fileItem.isFormField();
                 if (isFormField) {
                     out.println("<td>regular form field</td><td>FIELD NAME: " + fileItem.getFieldName() +
@@ -85,7 +87,7 @@ public class FileUpload extends HttpServlet {
         new Thread()
         {
             public void run() {
-                de.uni_potsdam.hpi.bpt.bp2014.jcomparser.JComparser.handleFileUpload(pcm);
+                //de.uni_potsdam.hpi.bpt.bp2014.jcomparser.JComparser.handleFileUpload(pcm);
             }
         }.start();
     }

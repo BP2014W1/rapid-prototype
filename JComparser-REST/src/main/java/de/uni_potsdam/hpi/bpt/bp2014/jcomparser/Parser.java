@@ -14,10 +14,12 @@ import java.util.List;
 public class Parser {
 
     /* parse the XML File */
-    public static void parsePCM(List pcm, Connector jHandler) {
+    public static void parsePCM(List pcm) {
+        Connector jHandler = new Connector();
+
         try {
             System.out.println(pcm.get(0));
-            /* hand over uplaoded file to BPMXML */
+            /* hand over uploaded file to BPMXML */
             File BPMNXML = new File("");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory
                     .newInstance();
