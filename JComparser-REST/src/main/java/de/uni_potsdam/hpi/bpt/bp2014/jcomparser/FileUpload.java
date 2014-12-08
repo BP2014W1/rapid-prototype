@@ -54,7 +54,7 @@ public class FileUpload extends HttpServlet {
                 out.println("<tr>");
                 FileItem fileItem = it.next();
                 //pcm.add(fileItem);
-                pcm.add(fileItem.getString("StoreLocation"));
+                pcm.add(fileItem.getString());
 
                 boolean isFormField = fileItem.isFormField();
                 if (isFormField) {
@@ -80,6 +80,8 @@ public class FileUpload extends HttpServlet {
             e.printStackTrace();
         }
 
+        //out.println(pcm);
+
         // Calling the postprocessing asynchronously
 
         /* we aint support java 1.8 :(
@@ -91,7 +93,7 @@ public class FileUpload extends HttpServlet {
         new Thread()
         {
             public void run() {
-                //de.uni_potsdam.hpi.bpt.bp2014.jcomparser.JComparser.handleFileUpload(pcm);
+                de.uni_potsdam.hpi.bpt.bp2014.jcomparser.JComparser.handleFileUpload(pcm);
             }
         }.start();
     }
