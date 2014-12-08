@@ -17,6 +17,8 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import static jcomparser.JComparser.*;
+
 public class FileUpload extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -25,7 +27,7 @@ public class FileUpload extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        List pcm = new ArrayList();
+        final List pcm = new ArrayList();
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
@@ -78,8 +80,11 @@ public class FileUpload extends HttpServlet {
         }
 
         // Calling the postprocessing asynchronously
-        Thread a = new Thread(() -> {
-            jcomparser.JComparser.main(pcm);
+        Thread a = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                main(pcm);
+            }
         });
     }
 }

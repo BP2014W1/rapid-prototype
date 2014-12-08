@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="JComparser-REST:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/JComparser_REST_war</output-path>
+    <root id="archive" name="JComparser-REST_war.war">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="main" />
+          <element id="file-copy" path="$PROJECT_DIR$/JComparser-REST/target/classes/de/uni_potsdam/hpi/bpt/bp2014/jcomparser/REST.class" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="javax.ws.rs:javax.ws.rs:1.01" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
