@@ -12,6 +12,10 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 
+/*
+As a part of the JComparser we need to provide a REST API in order to manage changes or updates in the JEngine Database.
+ */
+
 @Path("orders")
 public class REST {
     // Stores state simply in a static collection class.

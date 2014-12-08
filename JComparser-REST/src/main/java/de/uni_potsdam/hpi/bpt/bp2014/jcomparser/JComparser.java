@@ -16,21 +16,18 @@ public class JComparser {
         boolean rest_option = false;
 
         /* Initialization */
-        String JSON_response = "";
+        String XML_response = "";
         //String Processeditor_server_url = "http://localhost:8080/processeditor-repo-api/";
         String Processeditor_server_url = "http://hpi.framsteg.de/bp2014w1/PCMBeispiele/transportieren.model";
-
-        //Connector jHandler = new Connector();
-
 
         if (rest_option) {
             REST jREST = new REST();
         }
         if (retrieval_by_url) {
             Retrieval jRetrieval = new Retrieval();
-            JSON_response = jRetrieval.getHTML(Processeditor_server_url);
-            //System.out.println(JSON_response);
-            handleFileRetrieval(JSON_response);
+            XML_response = jRetrieval.getHTML(Processeditor_server_url);
+            XML_response = XML_response.replaceAll("[^\\x20-\\x7e]", "");
+            handleFileRetrieval(XML_response);
         }
     }
 

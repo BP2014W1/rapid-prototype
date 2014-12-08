@@ -1,34 +1,42 @@
 package de.uni_potsdam.hpi.bpt.bp2014.jcomparser;
 
 import org.w3c.dom.*;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-
+/*
+As a part of the JComparser we need to parse the retrieved XML doc in order to process it for the JEngine Database.
+ */
 public class Parser {
 
     /* parse the XML File */
     public static void parsePCM(List pcm) {
-        Connector jHandler = new Connector();
 
+        Connector jHandler = new Connector();
+        int pcm_size = pcm.size();
+        String pcm_item = "";
         try {
-            System.out.println(pcm.get(0));
-            /* hand over uploaded file to BPMXML */
-            File BPMNXML = new File("");
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory
-                    .newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(BPMNXML);
-            doc.getDocumentElement().normalize();
-            System.out.println("Root Element:"
-                    + doc.getDocumentElement().getNodeName());
-            fillTables(doc, jHandler);
+            // for each pcm entry
+            for(int i=0; i < pcm_size; i++) {
+                pcm_item = (String) pcm.get(i);
+                DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+                Document doc = dBuilder.parse(new InputSource(new ByteArrayInputStream(pcm_item.getBytes("utf-8"))));   // http://stackoverflow.com/questions/1706493/java-net-malformedurlexception-no-protocol
+               // Document doc = dBuilder.parse(pcm_item);
+                doc.getDocumentElement().normalize();
+                System.out.println("Root Element:"
+                        + doc.getDocumentElement().getNodeName());
+                fillTables(doc, jHandler);
+            }
+
         } catch (ParserConfigurationException e) {
             printErrorMessage(e);
         } catch (SAXException e) {
