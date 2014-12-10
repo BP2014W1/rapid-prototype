@@ -8,7 +8,7 @@ import java.sql.Statement;
  * Created by jaspar.mang on 03.12.14.
  */
 public class DbControlNodeInstance {
-    public Boolean existControlNodeInstance(int controlNode_id) {
+    public Boolean existControlNodeInstance(int controlNode_id, int fragmentInstance_id) {
         java.sql.Connection conn = Connection.getInstance().connect();
         Statement stmt = null;
         ResultSet rs = null;
@@ -17,7 +17,7 @@ public class DbControlNodeInstance {
         try {
             //Execute a query
             stmt = conn.createStatement();
-            String sql = "SELECT id FROM controlnodeinstance WHERE controlnode_id = " + controlNode_id;
+            String sql = "SELECT id FROM controlnodeinstance WHERE controlnode_id = " + controlNode_id +" AND fragmentinstance_id = "+ fragmentInstance_id;
             rs = stmt.executeQuery(sql);
             if(rs.next()) {
                 return true;
@@ -77,7 +77,7 @@ public class DbControlNodeInstance {
             }
         }
     }
-    public int getControlNodeInstanceID(int controlNode_id) {
+    public int getControlNodeInstanceID(int controlNode_id, int fragmentInstance_id) {
         java.sql.Connection conn = Connection.getInstance().connect();
         Statement stmt = null;
         ResultSet rs = null;
@@ -87,7 +87,7 @@ public class DbControlNodeInstance {
         try {
             //Execute a query
             stmt = conn.createStatement();
-            String sql = "SELECT id FROM controlnodeinstance WHERE controlnode_id = " + controlNode_id;
+            String sql = "SELECT id FROM controlnodeinstance WHERE controlnode_id = " + controlNode_id + " AND fragmentinstance_id = "+ fragmentInstance_id;
             rs = stmt.executeQuery(sql);
             rs.next();
             results = rs.getInt("id");

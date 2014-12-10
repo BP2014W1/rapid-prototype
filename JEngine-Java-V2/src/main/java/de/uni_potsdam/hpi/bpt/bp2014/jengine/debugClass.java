@@ -1,6 +1,5 @@
 package de.uni_potsdam.hpi.bpt.bp2014.jengine;
 
-import de.uni_potsdam.hpi.bpt.bp2014.database.Connection;
 import de.uni_potsdam.hpi.bpt.bp2014.database.DbActivityInstance;
 
 import java.io.BufferedReader;
@@ -40,14 +39,14 @@ public class debugClass {
         DbActivityInstance dbActivityInstance = new DbActivityInstance();
         dbActivityInstance.setState(1 , "init");
         while(true){
-            RunningService runningService = new RunningService(scenarioInstance);
-            LinkedList<Integer> activitiesIDs= runningService.getEnabledActivitiesIDs();
+            ExecutionService executionService = new ExecutionService(scenarioInstance);
+            LinkedList<Integer> activitiesIDs= executionService.getEnabledActivitiesIDs();
             System.out.println("enabled Aktivität ID");
             for(int activityID: activitiesIDs){
                 System.out.println(activityID);
             }
             System.out.println("Select Activity");
-            runningService.startActivity(new Integer(readLine()));
+            executionService.startActivity(new Integer(readLine()));
         }
     }
 }

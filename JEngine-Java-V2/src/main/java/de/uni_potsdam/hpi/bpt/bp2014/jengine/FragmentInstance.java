@@ -11,8 +11,8 @@ import java.util.LinkedList;
  */
 public class FragmentInstance {
     private ScenarioInstance scenarioInstance;
-    private int fragment_id;
-    private int fragmentInstance_id;
+    public int fragment_id;
+    public int fragmentInstance_id;
     private int scenarioInstance_id;
     private DbFragmentInstance dbFragmentInstance = new DbFragmentInstance();
     private DbControlNode dbControlNode = new DbControlNode();
@@ -22,11 +22,11 @@ public class FragmentInstance {
         this.scenarioInstance = scenarioInstance;
         this.fragment_id = fragment_id;
         this.scenarioInstance_id = scenarioInstance_id;
-        if (dbFragmentInstance.existFragment(fragment_id)){
-            fragmentInstance_id = dbFragmentInstance.getFragmentInstanceID(fragment_id);
+        if (dbFragmentInstance.existFragment(fragment_id, scenarioInstance_id)){
+            fragmentInstance_id = dbFragmentInstance.getFragmentInstanceID(fragment_id, scenarioInstance_id);
         }else {
             dbFragmentInstance.createNewFragmentInstance(fragment_id, scenarioInstance_id);
-            fragmentInstance_id = dbFragmentInstance.getFragmentInstanceID(fragment_id);
+            fragmentInstance_id = dbFragmentInstance.getFragmentInstanceID(fragment_id, scenarioInstance_id);
             this.initializeNodeInstanceForFragment();
         }
     }
@@ -39,6 +39,9 @@ public class FragmentInstance {
             ((TaskIncomingControlFlowBehavior)activityInstance.incomingBehavior).enableControlFlow();
         }
         //TODO: insert Gateways HERE!
+    }
+    public void terminate(){
+        dbFragmentInstance.terminateFragmentInstance(fragmentInstance_id);
     }
 
 }

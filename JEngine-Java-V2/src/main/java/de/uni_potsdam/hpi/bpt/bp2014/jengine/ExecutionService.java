@@ -5,10 +5,10 @@ import java.util.LinkedList;
 /**
  * Created by jaspar.mang on 08.12.14.
  */
-public class RunningService {
+public class ExecutionService {
     ScenarioInstance scenarioInstance;
 
-    public RunningService(ScenarioInstance scenarioInstance){
+    public ExecutionService(ScenarioInstance scenarioInstance){
         this.scenarioInstance=scenarioInstance;
     }
     public LinkedList<Integer> getEnabledActivitiesIDs(){
@@ -26,6 +26,8 @@ public class RunningService {
         for(ControlNodeInstance nodeInstance: scenarioInstance.enabledControlNodeInstances) {
             if (((ActivityInstance) nodeInstance).controlNode_id == id) {
                 ((ActivityInstance) nodeInstance).begin();
+                ((ActivityInstance) nodeInstance).terminate();
+                return;
             }
         }
     }

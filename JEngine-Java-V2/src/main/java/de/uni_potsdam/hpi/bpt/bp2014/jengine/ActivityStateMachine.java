@@ -70,6 +70,9 @@ public class ActivityStateMachine extends StateMachine {
         //String state = this.getState();
         if(state.equals("running")){
             this.setState("terminated");
+            scenarioInstance.runningControlNodeInstances.remove(controlNodeInstance);
+            scenarioInstance.controlNodeInstances.remove(controlNodeInstance);
+            scenarioInstance.terminatedControlNodeInstances.add(controlNodeInstance);
             return true;
         }
         return false;
