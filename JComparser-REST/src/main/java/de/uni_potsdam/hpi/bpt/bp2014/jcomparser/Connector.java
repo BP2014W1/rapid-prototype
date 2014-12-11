@@ -4,19 +4,20 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- * Created by Jani on 24.11.2014.
+/*
+As a part of the JComparser we need to seed the parsed information's into the JEngine Database.
  */
+
 public class Connector {
-        /* @TODO: how to handle duplicated entry errors? */
 
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     static final String DB_URL = "jdbc:mysql://localhost:3306/JEngine";
 
     // Database credentials
-    static final String USER = "root";
-    static final String PASS = "samsa";
+    static final String USER = "jengine_user";
+    static final String PASS = "wAgeDqkbW3rOawiYYmQz";
+
     public static Connection connect() {
         Connection conn = null;
         try {
@@ -24,17 +25,14 @@ public class Connector {
             Class.forName("com.mysql.jdbc.Driver");
 
             //Open a connection
-
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
         } catch (SQLException se) {
             //Handle errors for JDBC
-            System.out.println("hier");
             se.printStackTrace();
+
         } catch (Exception e) {
             //Handle errors for Class.forName
-            System.out.println("da");
-
             e.printStackTrace();
         }
         return conn;

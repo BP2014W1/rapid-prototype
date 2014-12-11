@@ -1,8 +1,5 @@
 package de.uni_potsdam.hpi.bpt.bp2014.jcomparser;
 
-/**
- * Created by Jani on 24.11.2014.
- */
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -14,6 +11,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
+
+/*
+As a part of the JComparser we need to provide a REST API in order to manage changes or updates in the JEngine Database.
+ */
 
 @Path("orders")
 public class REST {
