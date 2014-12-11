@@ -8,6 +8,6 @@ Engine Prototype
 
 * [JComparser] (https://github.com/BP2014W1/rapid-prototype/tree/master/JComparser-REST)
 
-* [Java based JEngine] (https://github.com/BP2014W1/rapid-prototype/tree/master/JEngine-Java-v2)
+* [Java based JEngine] (https://github.com/BP2014W1/rapid-prototype/tree/master/JEngine-Java-V2)
 
 * [RoR based JEngine] (https://github.com/BP2014W1/rapid-prototype/tree/master/JEngine-RoR)
