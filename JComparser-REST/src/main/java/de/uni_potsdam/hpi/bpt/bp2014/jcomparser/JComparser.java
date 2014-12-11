@@ -1,5 +1,8 @@
 package de.uni_potsdam.hpi.bpt.bp2014.jcomparser;
 
+import org.apache.commons.httpclient.NameValuePair;
+import org.apache.commons.httpclient.methods.PostMethod;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -49,7 +52,22 @@ public class JComparser {
             }
             handleFileRetrieval(pcm);
              */
-            
+            PostMethod post = new PostMethod("http://172.16.64.113:1205/users/login/");
+            NameValuePair[] data = {
+                    new NameValuePair("user", "root"),
+                    new NameValuePair("password", "inubit")
+            };
+            post.setRequestBody(data);
+            // execute method and handle any error responses.
+
+            InputStream in = null;
+            try {
+                in = post.getResponseBodyAsStream();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println(in);
+
             Retrieval jRetrieval = new Retrieval();
             XML_response = jRetrieval.getHTML(Processeditor_server_url);
             XML_response = XML_response.replaceAll("[^\\x20-\\x7e]", "");
