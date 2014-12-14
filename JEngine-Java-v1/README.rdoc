@@ -9,11 +9,6 @@ This JEngine does execute
 * usertasks
 * for each user
 
-== INSTALL
-
-* bundle install
-* bin/rake db:migrate
-* bin/rake db:seed 
 
 Status: closed - running stable within v1
 
