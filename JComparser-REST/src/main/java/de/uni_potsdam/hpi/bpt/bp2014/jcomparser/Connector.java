@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/*
+As a part of the JComparser we need to seed the parsed information's into the JEngine Database.
+ */
+
 public class Connector {
 
     // JDBC driver name and database URL
@@ -13,6 +17,7 @@ public class Connector {
     // Database credentials
     static final String USER = "jengine_user";
     static final String PASS = "wAgeDqkbW3rOawiYYmQz";
+
     public static Connection connect() {
         Connection conn = null;
         try {

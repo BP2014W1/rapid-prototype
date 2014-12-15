@@ -18,6 +18,9 @@ public class Seed {
     }
 
     public ArrayList<Integer> getAllActivityIDByFragmentID(int id) {
+
+        Connector jHandler = new Connector();
+
         de.uni_potsdam.hpi.bpt.bp2014.jcomparser.Connector connect;
         Connection conn = de.uni_potsdam.hpi.bpt.bp2014.jcomparser.Connector.connect();
 

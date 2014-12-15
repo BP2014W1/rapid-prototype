@@ -15,9 +15,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class FileUpload extends HttpServlet {
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+/*
+As a part of the JComparser we need to provide a manual XML File upload.
+ */
 
+public class FileUpload extends HttpServlet {
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         doPost(request, response);
     }
 
@@ -49,7 +53,9 @@ public class FileUpload extends HttpServlet {
             while (it.hasNext()) {
                 out.println("<tr>");
                 FileItem fileItem = it.next();
-                pcm.add(fileItem);
+                //pcm.add(fileItem);
+                pcm.add(fileItem.getString());
+
                 boolean isFormField = fileItem.isFormField();
                 if (isFormField) {
                     out.println("<td>regular form field</td><td>FIELD NAME: " + fileItem.getFieldName() +
@@ -73,6 +79,8 @@ public class FileUpload extends HttpServlet {
         } catch (FileUploadException e) {
             e.printStackTrace();
         }
+
+        //out.println(pcm);
 
         // Calling the postprocessing asynchronously
 
